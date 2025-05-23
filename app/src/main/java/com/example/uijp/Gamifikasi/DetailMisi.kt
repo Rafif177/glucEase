@@ -84,7 +84,7 @@ fun DetailMisi(navController: NavController) {
                 }
 
                 Button(
-                    onClick = { },
+                    onClick = {navController.navigate("gamifikasi")},
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
                         .padding(bottom = 70.dp)

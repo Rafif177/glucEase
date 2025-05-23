@@ -309,8 +309,3 @@ fun TaskStatusSelector() {
     }
 }
 
-@Preview
-@Composable
-fun GamifikasiUIPreview() {
-    GamifikasiUI(navController = rememberNavController())
-}

@@ -24,6 +24,7 @@ import com.example.uijp.artikel.ArtikelScreen
 import com.example.uijp.artikel.DetailArtikelScreen
 import com.example.uijp.datadiri.PersonalDataScreen
 import com.example.uijp.freemium.GetPremiumScreen
+import com.example.uijp.gamifikasi.DetailMisi
 import com.example.uijp.gulaDarah.ui.GulaDarahPage
 import com.example.uijp.gulaDarah.ui.InsertPages
 import com.example.uijp.konsultasi.DetailDokterUI
@@ -76,6 +77,7 @@ fun MainNavGraph(navController: NavHostController, modifier: Modifier = Modifier
 
         composable("reward") { KlaimReward(navController) }
         composable("gamifikasi") { GamifikasiUI(navController)}
+        composable("detailMisi") { DetailMisi(navController) }
         composable("profil") { ProfilUi(navController) }
         composable("pilihWaktu") { PilihWaktuUI(navController) }
         composable("pembayaran") { PembayaranUI(navController) }
