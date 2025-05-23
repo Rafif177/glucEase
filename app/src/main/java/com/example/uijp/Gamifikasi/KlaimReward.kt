@@ -76,6 +76,8 @@ fun KlaimReward(navController: NavController){
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = Color(0xFF494950),
+                        modifier = Modifier
+                            .padding(end = 28.dp)
                     )
                 }
             }
