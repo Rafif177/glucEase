@@ -14,28 +14,30 @@ import com.example.konsultasiprofil.UI.Screen.KonsultasiUi
 import com.example.konsultasiprofil.UI.Screen.NotifikasiUI
 import com.example.konsultasiprofil.UI.Screen.PembayaranUI
 import com.example.konsultasiprofil.UI.Screen.PilihWaktuUI
-import com.example.uijp.Gamifikasi.GamifikasiUI
-import com.example.uijp.Gamifikasi.KlaimReward
-import com.example.uijp.artikel.ArtikelKategoriScreen
-import com.example.uijp.laporan.LaporanMingguanPage
+import com.example.uijp.view.Gamifikasi.GamifikasiUI
+import com.example.uijp.view.Gamifikasi.KlaimReward
+import com.example.uijp.view.artikel.ArtikelKategoriScreen
+import com.example.uijp.view.laporan.LaporanMingguanPage
 import com.example.uijp.ui.LoginScreen
 import com.example.uijp.ui.RegisterScreen
-import com.example.uijp.artikel.ArtikelScreen
-import com.example.uijp.artikel.DetailArtikelScreen
-import com.example.uijp.datadiri.PersonalDataScreen
-import com.example.uijp.freemium.GetPremiumScreen
+import com.example.uijp.view.artikel.ArtikelScreen
+import com.example.uijp.view.artikel.DetailArtikelScreen
+import com.example.uijp.view.datadiri.PersonalDataScreen
+import com.example.uijp.view.freemium.GetPremiumScreen
 import com.example.uijp.gamifikasi.DetailMisi
 import com.example.uijp.gulaDarah.ui.GulaDarahPage
 import com.example.uijp.gulaDarah.ui.InsertPages
-import com.example.uijp.konsultasi.DetailDokterUI
-import com.example.uijp.konsultasi.ProfilUi
-import com.example.uijp.splash.Onboard1
-import com.example.uijp.splash.Onboard2
-import com.example.uijp.splash.Onboard3
-import com.example.uijp.splash.SplashScreen
-import com.example.uijp.tracker.TambahMakananScreen
-import com.example.uijp.tracker.TrackerGulaScreen
-import com.example.uijp.ui.theme.UijpTheme
+import com.example.uijp.view.konsultasi.DetailDokterUI
+import com.example.uijp.view.konsultasi.ProfilUi
+import com.example.uijp.navigation.MainNavigation
+import com.example.uijp.view.splash.Onboard1
+import com.example.uijp.view.splash.Onboard2
+import com.example.uijp.view.splash.Onboard3
+import com.example.uijp.view.splash.SplashScreen
+import com.example.uijp.view.tracker.TambahMakananScreen
+import com.example.uijp.view.tracker.TrackerGulaScreen
+import com.example.uijp.view.theme.UijpTheme
+import com.example.uijp.view.ReminderScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -65,7 +67,7 @@ fun MainNavGraph(navController: NavHostController, modifier: Modifier = Modifier
         composable("reminder") { ReminderScreen(navController) }
         composable("tambahmakanan") { TambahMakananScreen(navController) }
         composable("LMP") { LaporanMingguanPage(navController) }
-        composable("home") {MainNavigation(navController)}
+        composable("home") { MainNavigation(navController) }
         composable("artikel") { ArtikelScreen(navController)}
         composable("konsultasi") { KonsultasiUi(navController)}
         composable("tracker") { TrackerGulaScreen(navController)}
