@@ -139,7 +139,7 @@ fun GamifikasiUI(navController: NavController) {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(bottom = 100.dp, top = 30.dp)
+                        .padding(bottom = 80.dp, top = 20.dp)
                 ) {
                     item {
                         TaskList(
