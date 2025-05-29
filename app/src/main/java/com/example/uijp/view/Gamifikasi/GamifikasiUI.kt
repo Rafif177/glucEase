@@ -118,7 +118,8 @@ fun GamifikasiUI(navController: NavController) {
                     fontSize = 18.sp,
                     color = Color(0xFF263238),
                     modifier = Modifier
-                        .width(225.dp),
+                        .width(225.dp)
+                        .height(65.dp),
                     textAlign = TextAlign.Center,
                 )
             }
