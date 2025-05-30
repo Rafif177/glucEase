@@ -67,7 +67,7 @@ fun TrackerGulaScreen(navController: NavController) {
         // Konsumsi Gula Harian
         Card(
             shape = RoundedCornerShape(16.dp),
-            backgroundColor = Color(0xFFF8F8F8),
+            backgroundColor = Color(0xFFFFFFFF),
             modifier = Modifier.fillMaxWidth(),
             elevation = 0.dp
         ) {
@@ -79,6 +79,7 @@ fun TrackerGulaScreen(navController: NavController) {
                     progress = 0.75f,
                     modifier = Modifier.size(100.dp),
                     strokeWidth = 10.dp,
+                    backgroundColor = Color(0xFFFFFFFF),
                     color = Color(0xFFF67669)
                 )
                 Spacer(modifier = Modifier.height(16.dp))

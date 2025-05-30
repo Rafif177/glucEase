@@ -23,9 +23,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.VisualTransformation
+import android.app.DatePickerDialog
+import java.text.SimpleDateFormat
+import android.view.ContextThemeWrapper
+import java.util.*
+import androidx.compose.foundation.clickable
+import com.example.uijp.R
 
 @Composable
 fun PersonalDataScreen(navController: NavController) {
+    val context = LocalContext.current
+    val calendar = Calendar.getInstance()
+
     val genderOptions = listOf("Laki-laki", "Perempuan")
     val puasaOptions = listOf("Setiap hari", "Kadang", "Tidak Pernah")
 
@@ -35,7 +44,11 @@ fun PersonalDataScreen(navController: NavController) {
     var height by remember { mutableStateOf("") }
 
     var selectedIntensity by remember { mutableStateOf("") }
-    var selectedDate by remember { mutableStateOf("") }
+    var selectedDate by remember {
+        mutableStateOf(
+            SimpleDateFormat("dd MMM yyyy", Locale("id", "ID")).format(Date()).uppercase()
+        )
+    }
     var neverChecked by remember { mutableStateOf(false) }
     var selectedPuasa by remember { mutableStateOf("") }
 
@@ -49,13 +62,28 @@ fun PersonalDataScreen(navController: NavController) {
         )
     }
 
+    fun showDatePicker() {
+        DatePickerDialog(
+            ContextThemeWrapper(context, R.style.CustomDatePickerDialog),
+            { _, year, month, dayOfMonth ->
+                val newCalendar = Calendar.getInstance()
+                newCalendar.set(year, month, dayOfMonth)
+                selectedDate = SimpleDateFormat("dd MMM yyyy", Locale("id", "ID"))
+                    .format(newCalendar.time).uppercase()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        ).show()
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFF67669)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(80.dp)) // Jeda atas
+        Spacer(modifier = Modifier.height(80.dp))
 
         Box(
             modifier = Modifier
@@ -84,8 +112,20 @@ fun PersonalDataScreen(navController: NavController) {
             ) {
                 Spacer(modifier = Modifier.height(24.dp))
 
-                DropdownSelector(label = "Jenis Kelamin", options = genderOptions, selectedOption = selectedGender) {
-                    selectedGender = it
+                Text("Jenis Kelamin", fontWeight = FontWeight.SemiBold)
+
+                genderOptions.forEach { option ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(vertical = 4.dp)
+                    ) {
+                        RadioButton(
+                            selected = selectedGender == option,
+                            onClick = { selectedGender = option },
+                            colors = RadioButtonDefaults.colors(selectedColor = Color(0xFFF67669))
+                        )
+                        Text(option)
+                    }
                 }
 
                 Spacer(Modifier.height(16.dp))
@@ -138,13 +178,21 @@ fun PersonalDataScreen(navController: NavController) {
 
                 Spacer(Modifier.height(24.dp))
 
-                OutlinedTextField(
-                    value = selectedDate,
-                    onValueChange = { selectedDate = it },
-                    label = { Text("Kapan terakhir cek gula darah?") },
-                    trailingIcon = { Icon(Icons.Default.DateRange, contentDescription = null) },
-                    modifier = Modifier.fillMaxWidth()
-                )
+                Text("Kapan terakhir cek gula darah?", fontWeight = FontWeight.SemiBold)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { showDatePicker() }
+                        .padding(12.dp)
+                        .background(Color(0xFFF1F1F1), RoundedCornerShape(8.dp))
+                        .padding(16.dp)
+                ) {
+                    Icon(Icons.Default.DateRange, contentDescription = null, tint = Color.Gray)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(text = selectedDate, color = Color.Black)
+                }
+
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Checkbox(checked = neverChecked, onCheckedChange = { neverChecked = it })
                     Text("Belum Pernah")

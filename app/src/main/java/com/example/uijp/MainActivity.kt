@@ -30,6 +30,7 @@ import com.example.uijp.gulaDarah.ui.InsertPages
 import com.example.uijp.view.konsultasi.DetailDokterUI
 import com.example.uijp.view.konsultasi.ProfilUi
 import com.example.uijp.navigation.MainNavigation
+import com.example.uijp.view.LupaPasswordScreen
 import com.example.uijp.view.splash.Onboard1
 import com.example.uijp.view.splash.Onboard2
 import com.example.uijp.view.splash.Onboard3
@@ -38,6 +39,8 @@ import com.example.uijp.view.tracker.TambahMakananScreen
 import com.example.uijp.view.tracker.TrackerGulaScreen
 import com.example.uijp.view.theme.UijpTheme
 import com.example.uijp.view.ReminderScreen
+import com.example.uijp.view.ResetPasswordScreen
+import com.example.uijp.view.VerificationScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -63,6 +66,9 @@ fun MainNavGraph(navController: NavHostController, modifier: Modifier = Modifier
         composable("onboard2") { Onboard2(navController) }
         composable("onboard3") { Onboard3(navController) }
         composable("login") { LoginScreen(navController) }
+        composable("lupaPassword") { LupaPasswordScreen(navController) }
+        composable("resetPassword") { ResetPasswordScreen(navController) }
+        composable("verifikasi") { VerificationScreen(navController) }
         composable("register") { RegisterScreen(navController) }
         composable("reminder") { ReminderScreen(navController) }
         composable("tambahmakanan") { TambahMakananScreen(navController) }

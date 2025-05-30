@@ -63,10 +63,13 @@ dependencies {
 
     // Charting library (jika dipakai)
     implementation("com.patrykandpatrick.vico:compose:1.13.0")
+    implementation("com.google.android.material:material:1.11.0") // atau versi terbaru
+
 
     // Preview & Debug
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
 
     // Testing
     testImplementation("junit:junit:4.13.2")

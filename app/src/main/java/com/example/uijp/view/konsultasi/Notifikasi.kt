@@ -78,7 +78,7 @@ fun NotifikasiUI(navController: NavController, modifier: Modifier = Modifier) {
 
         Button(
             onClick = {navController.navigate("home")},
-            colors = ButtonDefaults.buttonColors(contentColor = Color(0xFFF26C62)),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFF26C62)),
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier
                 .fillMaxWidth()

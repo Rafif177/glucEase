@@ -47,6 +47,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import android.view.ContextThemeWrapper
 import androidx.navigation.NavController
 import com.example.uijp.R
 import java.util.Calendar
@@ -78,7 +79,7 @@ fun ReminderScreen(navController: NavController) {
         }
     }
     val timePickerDialog = TimePickerDialog(
-        context,
+        ContextThemeWrapper(context, R.style.CustomTimePickerDialog),
         { _, selectedHour: Int, selectedMinute: Int ->
             timeText = String.format("%02d:%02d", selectedHour, selectedMinute)
         },
@@ -266,7 +267,7 @@ fun ReminderScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp)).
-                    padding(horizontal = 8.dp)
+                padding(horizontal = 8.dp)
                 .height(40.dp),
             onClick = {
                 Toast.makeText(context, "Reminder berhasil disimpan", Toast.LENGTH_SHORT).show()
@@ -276,6 +277,6 @@ fun ReminderScreen(navController: NavController) {
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF67669), disabledContainerColor = Color(0xFFF7958F))
         ) { Text("Simpan", color = Color.White)
 
-            }
         }
     }
+}

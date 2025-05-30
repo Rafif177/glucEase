@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -27,16 +28,21 @@ fun Onboard2(navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp)
-                .background(Color(0xFFFFE5E0)),
+                .height(600.dp) // tinggi Box yang lebih kecil
+                .background(Color(0xFFFFDAD6)),
             contentAlignment = Alignment.Center
         ) {
             Image(
-                painter = painterResource(id = R.drawable.image_120),
+                painter = painterResource(id = R.drawable.onboard2),
                 contentDescription = "Ilustrasi Gula Darah",
-                modifier = Modifier.size(200.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .size(700.dp)
+                    .offset(y = (50).dp), // opsional: geser agar center lebih cocok
+                contentScale = ContentScale.Fit
             )
         }
+
 
         Column(
             modifier = Modifier

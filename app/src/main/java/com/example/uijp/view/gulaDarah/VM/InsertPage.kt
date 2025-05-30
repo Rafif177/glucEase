@@ -3,6 +3,7 @@ package com.example.uijp.gulaDarah.ui
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.view.ContextThemeWrapper
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.uijp.GulaDarahViewModel
+import com.example.uijp.R
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -40,7 +42,7 @@ fun InsertPages(viewModel: GulaDarahViewModel, navController: NavController) {
 
     fun showDatePicker() {
         DatePickerDialog(
-            context,
+            ContextThemeWrapper(context, R.style.CustomDatePickerDialog),
             { _, year, month, dayOfMonth ->
                 val calendar = Calendar.getInstance()
                 calendar.set(year, month, dayOfMonth)
@@ -54,7 +56,7 @@ fun InsertPages(viewModel: GulaDarahViewModel, navController: NavController) {
 
     fun showTimePicker() {
         TimePickerDialog(
-            context,
+            ContextThemeWrapper(context, R.style.CustomTimePickerDialog),
             { _, hour, minute ->
                 jam = String.format("%02d:%02d", hour, minute)
             },

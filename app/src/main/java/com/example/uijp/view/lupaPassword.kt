@@ -144,9 +144,3 @@ fun LupaPasswordScreen(navController: NavController) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewLupaPassword() {
-    val navController = rememberNavController() // Dummy NavController
-    LupaPasswordScreen(navController)
-}

@@ -32,6 +32,11 @@ import com.example.uijp.R
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.runtime.*
+import androidx.compose.foundation.border
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
+
+
 
 
 
@@ -57,6 +62,9 @@ fun HomeScreen(navController: NavController) {
                 }
                 IconButton(onClick = {navController.navigate("profil")}) {
                     Icon(Icons.Default.AccountCircle, contentDescription = "Profile")
+                }
+                IconButton(onClick = {navController.navigate("login")}) {
+                    Icon(Icons.Default.Lock, contentDescription = "Logout")
                 }
             }
         }
@@ -140,7 +148,7 @@ fun HomeScreen(navController: NavController) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text("Artikel Pilihan untuk Kamu", fontWeight = FontWeight.SemiBold)
-            TextButton(onClick = { /* TODO */ }) {
+            TextButton(onClick = {navController.navigate("artikel")}) {
                 Text("Baca semua")
             }
         }
@@ -222,8 +230,7 @@ fun DailyMissionList(navController: NavController) {
 
 
 @Composable
-fun MissionItem(text: String, locked: Boolean, navController: NavController)
- {
+fun MissionItem(text: String, locked: Boolean, navController: NavController) {
     var showDialog by remember { mutableStateOf(false) }
 
     Card(
@@ -259,11 +266,16 @@ fun MissionItem(text: String, locked: Boolean, navController: NavController)
         AlertDialog(
             onDismissRequest = { showDialog = false },
             confirmButton = {
-                Button(onClick = {
-                    showDialog = false
-                    navController.navigate("premium")
-                    // Arahkan ke halaman langganan jika ada
-                }) {
+                Button(
+                    onClick = {
+                        showDialog = false
+                        navController.navigate("premium")
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFF67669),
+                        contentColor = Color.White
+                    )
+                ) {
                     Text("Langganan Sekarang")
                 }
             },
@@ -280,7 +292,7 @@ fun MissionItem(text: String, locked: Boolean, navController: NavController)
 
 
 
-@Composable
+     @Composable
 fun ArticleList() {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -290,11 +302,24 @@ fun ArticleList() {
                 modifier = Modifier
                     .width(200.dp)
                     .height(120.dp)
+                    .border(
+                        width = 2.dp,
+                        color = Color.LightGray, // Warna abu-abu muda
+                        shape = RoundedCornerShape(8.dp)
+                    ),
+                shape = RoundedCornerShape(8.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.White
+                )
             ) {
                 Column(
                     modifier = Modifier.padding(8.dp)
                 ) {
-                    Text("Aktivitas Ringan yang Efektif Menurunkan Gula Darah", fontSize = 14.sp, maxLines = 2)
+                    Text(
+                        "Aktivitas Ringan yang Efektif Menurunkan Gula Darah",
+                        fontSize = 14.sp,
+                        maxLines = 2
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Kemarin", fontSize = 10.sp, color = Color.Gray)
                 }

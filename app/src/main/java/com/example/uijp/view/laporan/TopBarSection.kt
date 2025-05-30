@@ -40,9 +40,7 @@ fun TopBarSection(navController: NavController) {
                 textAlign = TextAlign.Center,
                 modifier = Modifier.weight(1f)
             )
-            IconButton(onClick = {(TODO()) }) {
-                Icon(painter = painterResource(id = R.drawable.icon_clock), contentDescription = "download", tint = Color.Unspecified)
-            }
+
         }
         Spacer(modifier = Modifier.padding(4.dp))
         Row(

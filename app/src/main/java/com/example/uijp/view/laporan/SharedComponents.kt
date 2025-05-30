@@ -13,13 +13,13 @@ fun BulletPoint(text: String) {
     Row(modifier = Modifier.padding(start = 16.dp, top = 4.dp)) {
         Text(
             text = "\u2022",
-            fontSize = 14.sp,
+            fontSize = 18.sp,
             modifier = Modifier.padding(end = 8.dp),
             color = Color.Black
         )
         Text(
             text = text,
-            fontSize = 14.sp,
+            fontSize = 18.sp,
             color = Color.DarkGray
         )
     }
