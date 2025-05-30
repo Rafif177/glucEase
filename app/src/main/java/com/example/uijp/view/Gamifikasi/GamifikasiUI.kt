@@ -58,12 +58,12 @@ val robotoFontFamily = FontFamily(
     Font(googleFont = roboto, fontProvider = provider, weight = FontWeight.Light),
     Font(googleFont = roboto, fontProvider = provider, weight = FontWeight.Normal),
     Font(googleFont = roboto, fontProvider = provider, weight = FontWeight.Medium),
-    Font(googleFont = roboto, fontProvider = provider, weight = FontWeight.Bold),
-    Font(googleFont = roboto, fontProvider = provider, weight = FontWeight.SemiBold)
+    Font(googleFont = roboto, fontProvider = provider, weight = FontWeight.Bold)
 )
 
 @Composable
 fun GamifikasiUI(navController: NavController) {
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -75,18 +75,17 @@ fun GamifikasiUI(navController: NavController) {
                 .padding(top = 74.dp)
         ) {
             Row(
-                Modifier
-                    .fillMaxWidth()
+                Modifier.fillMaxWidth()
                     .height(28.dp)
                     .padding(horizontal = 24.dp)
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_back),
-                    contentDescription = "Back",
-                    modifier = Modifier
-                        .size(28.dp)
-                        .clickable { navController.popBackStack() }
-                )
+                IconButton(onClick = { navController.popBackStack() }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_back),
+                        contentDescription = "Back",
+                        modifier = Modifier.size(28.dp)
+                    )
+                }
 
                 Box(
                     modifier = Modifier
@@ -97,10 +96,9 @@ fun GamifikasiUI(navController: NavController) {
                     Text(
                         "Misi Harian",
                         fontFamily = robotoFontFamily,
-                        fontWeight = FontWeight.SemiBold,
                         fontSize = 20.sp,
+                        fontWeight = FontWeight.SemiBold,
                         color = Color(0xFF181818),
-                        modifier = Modifier.padding(end = 28.dp)
                     )
                 }
             }
@@ -118,8 +116,7 @@ fun GamifikasiUI(navController: NavController) {
                     fontSize = 18.sp,
                     color = Color(0xFF263238),
                     modifier = Modifier
-                        .width(225.dp)
-                        .height(65.dp),
+                        .width(225.dp),
                     textAlign = TextAlign.Center,
                 )
             }
@@ -135,11 +132,14 @@ fun GamifikasiUI(navController: NavController) {
                     ),
                 contentAlignment = Alignment.TopCenter
             ) {
+                Column {
+                    TaskStatusSelector()
+                }
 
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(bottom = 80.dp, top = 20.dp)
+                        .padding(bottom = 100.dp, top = 60.dp)
                 ) {
                     item {
                         TaskList(
@@ -210,6 +210,7 @@ fun TaskList(taskName: String, isDone: Boolean, navController: NavController) {
             .padding(horizontal = 40.dp)
             .padding(top = 30.dp)
             .clickable {
+                // Navigate to DetailMisi screen
                 navController.navigate("detailMisi")
             },
         horizontalAlignment = Alignment.CenterHorizontally
@@ -260,6 +261,51 @@ fun TaskList(taskName: String, isDone: Boolean, navController: NavController) {
                 .height(0.5.dp)
                 .background(Color.Gray)
         )
+    }
+}
+
+@Composable
+fun TaskStatusSelector() {
+    var selected by remember { mutableStateOf("Sedang Dikerjakan") }
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 40.dp, vertical = 20.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        listOf("Sedang Dikerjakan", "Belum Dikerjakan").forEach { label ->
+            val isSelected = selected == label
+            Column(
+                modifier = Modifier
+                    .width(158.dp)
+                    .clickable { selected = label },
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = label,
+                    color = if (isSelected) Color.Black else Color(0xFF959595),
+                    fontFamily = robotoFontFamily,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 16.sp
+                )
+
+                Spacer(modifier = Modifier.height(15.dp))
+
+                if (isSelected) {
+                    Spacer(
+                        modifier = Modifier
+                            .padding(top = 4.dp)
+                            .height(2.dp)
+                            .fillMaxWidth()
+                            .background(Color.Black)
+                    )
+                } else {
+                    Spacer(modifier = Modifier.height(6.dp)) // keep spacing consistent
+                }
+            }
+        }
     }
 }
 
